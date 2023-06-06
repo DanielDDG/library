@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Quick Library</title>
 </head>
 <body>
@@ -11,9 +12,9 @@
             <img src="images/library.png" id="logo">
             <div class="logcontainer">
                 <div id="log">Library Log</div>
-                <div>Reading: </div>
-                <div>Planning: </div>
-                <div>Completed: </div>
+                <div id="readCount">Reading: 0</div>
+                <div id="planCount">Planning: 0</div>
+                <div id="completeCount">Completed: 0</div>
             </div>
         </header>
         <button id="add">+ Add Book</button>
@@ -30,12 +31,6 @@
                     <input type="text" id="pages" name="pages">
                     <label for="year">Year:</label>
                     <input type="year" id="year" name="year">
-                    <label for="status">Status:</label>
-                    <select id="status" name="status">
-                        <option value="Reading">Reading</option>
-                        <option value="Planning">Planning</option>
-                        <option value="Completed">Completed</option>
-                    </select>
                 </div>
                 <button type="submit">Submit</button>
             </div>
@@ -43,7 +38,7 @@
         <div id="books">
         </div>
         <footer>
-            <div>DanielDDG 2023</div>
+            <div>DanielDDG <i class="fa fa-github" style="font-size:24px"></i></div>
         </footer>
     </div>
     <script src="main.js"></script>    
