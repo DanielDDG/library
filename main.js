@@ -12,24 +12,25 @@ const readCount = document.getElementById('readCount');
 const planCount = document.getElementById('planCount');
 const completeCount = document.getElementById('completeCount');
 
+class Book {
+    constructor(title, author, pages, year) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.year = year;
+    }
+}
+
 function retrieveForm() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const year = document.getElementById('year').value;
 
-    const entry = new Book(title, author, pages, year, status);
+    const entry = new Book(title, author, pages, year);
     myLibrary.push(entry);
 
     addBook.call(entry);
-}
-
-function Book(title, author, pages, year, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.year = year;
-    this.status = status;
 }
 
 function allBooks() {
