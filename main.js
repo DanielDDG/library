@@ -1,16 +1,35 @@
-let myLibrary = [];
-let planningCount = 0;
-let readingCount = 1;
-let completedCount = 0;
+// Initializes all the variables.
 
-const add = document.getElementById('add');
-const modal = document.getElementById('form');
-const books = document.getElementById('books');
-const close = document.getElementById('close');
-const remove = document.getElementById('remove');
-const readCount = document.getElementById('readCount');
-const planCount = document.getElementById('planCount');
-const completeCount = document.getElementById('completeCount');
+class Initializer {
+    constructor() {
+        this.myLibrary = [];
+        this.planningCount = 0;
+        this.readingCount = 1;
+        this.completedCount = 0;
+        this.log = document.getElementById('log');
+        this.readCount = document.getElementById('readCount');
+        this.planCount = document.getElementById('planCount');
+        this.completeCount = document.getElementById('completeCount');
+        this.add = document.getElementById('add');
+        this.modal = document.getElementById('form');
+        this.books = document.getElementById('books');
+        this.close = document.getElementById('close');
+        this.remove = document.getElementById('remove');
+
+        this.add.addEventListener('click', () => {
+            this.modal.style.display = "block";
+        })
+
+        this.modal.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.readingCount++;
+        });
+
+        this.close.addEventListener('click', () => {
+            this.modal.style.display = "none";
+        });
+    }
+}
 
 class Book {
     constructor(title, author, pages, year) {
@@ -21,116 +40,24 @@ class Book {
     }
 }
 
-function retrieveForm() {
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const year = document.getElementById('year').value;
+class FormRetrieval extends Initializer {
+    constructor() {
+        super();
+        this.title = document.getElementById('title').value;
+        this.author = document.getElementById('author').value;
+        this.pages = document.getElementById('pages').value;
+        this.year = document.getElementById('year').value;
 
-    const entry = new Book(title, author, pages, year);
-    myLibrary.push(entry);
-
-    addBook.call(entry);
-}
-
-function allBooks() {
-    for (i = 0; i < myLibrary.length; i++) {
-        addBook.call(myLibrary[i]);
+        const entry = new Book('The Hobbit', 'J.R.R. Tolkien', '396', '1943');
+        this.myLibrary.push(entry);
+        console.log(this.myLibrary);
     }
 }
 
-function addBook() {
-    let newBook = document.createElement('div');
-    let closeArrow = document.createElement('span');
-    let container = document.createElement('div');
-    let newTitle = document.createElement('p');
-    let newAuthor = document.createElement('p');
-    let newPages = document.createElement('p');
-    let newYear = document.createElement('p');
-    let newStatus = document.createElement('select');
-    let reading = document.createElement('option');
-    let planning = document.createElement('option');
-    let completed = document.createElement('option');
+const retrieve = new FormRetrieval();
+const listener = new Initializer();
 
-    readCount.textContent = 'Reading: ' + readingCount;
-    planCount.textContent = 'Planning: ' + planningCount;
-    completeCount.textContent = 'Completed: ' + completedCount;
-    closeArrow.textContent = '\u00D7';
-    newTitle.textContent = this.title;
-    newAuthor.textContent = this.author;
-    newPages.textContent = this.pages + ' Pages';
-    newYear.textContent = this.year;
-    newStatus.textContent = this.status;
-    reading.textContent = 'Reading';
-    planning.textContent = 'Planning';
-    completed.textContent = 'Completed';
 
-    closeArrow.setAttribute('data-booknumber', [i]);
-    newBook.setAttribute('data-booknumber', [i]);
-    let arrowNumber = closeArrow.getAttribute('data-booknumber');
-    let bookNumber = closeArrow.getAttribute('data-booknumber');
-    
-    newBook.className = 'entry';
-    closeArrow.id = 'remove';
 
-    closeArrow.addEventListener('click', () => {
-        if (arrowNumber === bookNumber) {
-            newBook.remove();
-        }
-    });
 
-    newStatus.addEventListener('change', function() {
-        const option = this.value;
 
-        if (option === 'Planning') {
-            readingCount--;
-            planningCount++;
-            newBook.style.backgroundColor = 'rgb(237, 240, 74)';
-        } else if (option === 'Completed') {
-            readingCount--;
-            completedCount++;
-            newBook.style.backgroundColor = 'rgb(90, 204, 224)';
-        } else {
-            readingCount++;
-            newBook.style.backgroundColor = 'rgb(84, 226, 115)';
-        }
-    });
-
-    console.log(readingCount);
-    console.log(planningCount);
-    console.log(completedCount);
-
-    books.appendChild(newBook);
-    newBook.appendChild(closeArrow);
-    newBook.appendChild(container);
-    container.appendChild(newTitle);
-    container.appendChild(newAuthor);
-    container.appendChild(newPages);
-    container.appendChild(newYear);
-    newBook.appendChild(newStatus);
-
-    newStatus.appendChild(reading);
-    newStatus.appendChild(planning);
-    newStatus.appendChild(completed);
-
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('pages').value = '';
-    document.getElementById('year').value = '';
-}
-
-modal.addEventListener('submit', (event) => {
-    event.preventDefault();
-    retrieveForm();
-    readingCount++;
-});
-
-add.addEventListener('click', () => {
-    modal.style.display = "block";
-})
-
-close.addEventListener('click', () => {
-    modal.style.display = "none";
-});
-
-allBooks();
