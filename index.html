@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Quick Library</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="grid-container">
-        <header>
-            <img src="images/library.png" id="logo">
-            <div class="logcontainer">
-                <div id="log">Library Log</div>
-                <div id="readCount">Reading: 0</div>
-                <div id="planCount">Planning: 0</div>
-                <div id="completeCount">Completed: 0</div>
-            </div>
-        </header>
-        <button id="add">+ Add Book</button>
-        <form id="form" class="modal">
-            <div class="modal-content">
-                <span id="close">&times;</span>
-                <h2>Book Logging</h2>
-                <div class="inputs"> 
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title">
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author">
-                    <label for="pages">Pages:</label>
-                    <input type="text" id="pages" name="pages">
-                    <label for="year">Year:</label>
-                    <input type="year" id="year" name="year">
-                </div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-        <div id="books">
+      <header>
+        <img src="images/library.png" id="logo" />
+        <div class="logcontainer">
+          <div id="log">Library Log</div>
+          <div id="readCount">Reading: 0</div>
+          <div id="planCount">Planning: 0</div>
+          <div id="completeCount">Completed: 0</div>
         </div>
-        <footer>
-            <div>DanielDDG <i class="fa fa-github" style="font-size:24px"></i></div>
-        </footer>
+      </header>
+      <button id="add">+ Add Book</button>
+      <form id="form" class="modal">
+        <div class="modal-content">
+          <span id="close">&times;</span>
+          <h2>Book Logging</h2>
+          <div class="inputs">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required />
+            <label for="pages">Pages:</label>
+            <input type="text" id="pages" name="pages" required />
+            <label for="year">Year:</label>
+            <input type="year" id="year" name="year" required />
+          </div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <div id="books"></div>
+      <footer>
+        <div>
+          DanielDDG <i class="fa fa-github" style="font-size: 24px"></i>
+        </div>
+      </footer>
     </div>
-    <script src="main.js"></script>    
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
